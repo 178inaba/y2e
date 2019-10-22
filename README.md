@@ -14,7 +14,7 @@ BAR: 123
 BAZ: true
 ```
 
-Pass YAML file to y2e and execute it as a subcommand of eval command.
+Pass YAML file to `y2e` and execute it as a subcommand of `eval` command.
 
 ```console
 $ eval "$(y2e your_env_var.yaml)"
