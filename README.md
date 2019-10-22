@@ -14,10 +14,15 @@ BAR: 123
 BAZ: true
 ```
 
-Pass YAML file to `y2e` and execute it as a subcommand of `eval` command.
+Pass YAML file to `y2e` and execute it as a subcommand of `eval` command.  
+After execution, the value of the YAML file is set as an environment variable.
 
 ```console
 $ eval "$(y2e your_env_var.yaml)"
+$ env | grep -e FOO -e BAR -e BAZ
+FOO=foo
+BAR=123
+BAZ=true
 ```
 
 ### Options
