@@ -1,6 +1,7 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"log"
 	"os"
@@ -9,7 +10,11 @@ import (
 )
 
 func main() {
-	f, err := os.Open(os.Args[1])
+	var isVerbose bool
+	flag.BoolVar(&isVerbose, "verbose", false, "Output detail log to the stderr")
+	flag.Parse()
+
+	f, err := os.Open(flag.Arg(0))
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -20,6 +25,11 @@ func main() {
 	}
 
 	for k, v := range m {
-		fmt.Printf("export %s='%s';", k, v)
+		e := fmt.Sprintf("export %s='%s';", k, v)
+		if isVerbose {
+			fmt.Fprintln(os.Stderr, e)
+		}
+
+		fmt.Print(e)
 	}
 }
