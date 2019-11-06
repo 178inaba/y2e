@@ -21,7 +21,7 @@ vet:
 	go vet ./...
 
 test:
-	go test -count=1 -race ./...
+	./_test/test.sh
 
 install-tools:
 	GO111MODULE=off go get -u golang.org/x/lint/golint golang.org/x/tools/cmd/goimports github.com/golangci/golangci-lint/cmd/golangci-lint
