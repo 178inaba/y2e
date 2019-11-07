@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -eu
+
 go build
 eval "$(y2e _test/test.yaml)"
 rm y2e
