@@ -1,5 +1,6 @@
 # y2e
 
+[![CircleCI](https://circleci.com/gh/178inaba/y2e.svg?style=svg)](https://circleci.com/gh/178inaba/y2e)
 [![Go Report Card](https://goreportcard.com/badge/github.com/178inaba/y2e)](https://goreportcard.com/report/github.com/178inaba/y2e)
 
 y2e sets environment variables from a YAML file.
