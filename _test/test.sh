@@ -2,7 +2,7 @@
 
 set -eu
 
-go build
+go build -o y2e
 eval "$(y2e _test/test.yaml)"
 rm y2e
 
