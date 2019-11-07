@@ -2,8 +2,8 @@
 
 set -eu
 
-go build -o y2e
-eval "$(y2e _test/test.yaml)"
+go build
+eval "$(./y2e _test/test.yaml)"
 rm y2e
 
 if [[ "${FOO}" != 'foo' ]]; then
