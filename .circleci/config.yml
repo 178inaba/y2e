@@ -14,14 +14,14 @@ references:
           name: Check fmt difference
           command: make -s fmt-diff
       - run:
-          name: Run ci-lint
-          command: make -s ci-lint
+          name: Run vet
+          command: make -s vet
       - run:
           name: Run lint
           command: make -s lint
       - run:
-          name: Run vet
-          command: make -s vet
+          name: Run ci-lint
+          command: make -s ci-lint
       - run:
           name: Test
           command: make -s test
