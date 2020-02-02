@@ -1,18 +1,20 @@
-.PHONY: all mod-download fmt fmt-diff ci-lint lint vet test install-tools
+LOCAL_PACKAGE_PREFIX := github.com/178inaba/y2e
 
-all: fmt-diff ci-lint lint vet test
+.PHONY: all fmt fmt-diff ci-lint ci-lint-fix lint vet test install-tools
 
-mod-download:
-	go mod download
+all: fmt ci-lint-fix vet lint ci-lint test
 
 fmt:
-	goimports -w .
+	goimports -local '$(LOCAL_PACKAGE_PREFIX)' -w .
 
 fmt-diff:
-	test -z $$(goimports -l .) || (goimports -d . && exit 1)
+	test -z $$(goimports -local '$(LOCAL_PACKAGE_PREFIX)' -l .) || (goimports -local '$(LOCAL_PACKAGE_PREFIX)' -d . && exit 1)
 
 ci-lint:
 	golangci-lint run
+
+ci-lint-fix:
+	golangci-lint run --fix
 
 lint:
 	golint -set_exit_status ./...
@@ -24,4 +26,5 @@ test:
 	./_test/test.sh
 
 install-tools:
-	GO111MODULE=off go get -u golang.org/x/lint/golint golang.org/x/tools/cmd/goimports github.com/golangci/golangci-lint/cmd/golangci-lint
+	GO111MODULE=off go get -u golang.org/x/lint/golint golang.org/x/tools/cmd/goimports
+	curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $$(go env GOPATH)/bin v1.23.1
